@@ -29,6 +29,6 @@ Route::post('/tokens', 'AuthTesting@index');
 // })->middleware('auth:api');
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
     Route::get('/me', function () {
-        return "Carol Sayang";
+        return "Hy KNTL";
     });
 });

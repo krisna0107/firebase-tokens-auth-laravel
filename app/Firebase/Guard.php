@@ -9,27 +9,12 @@ use Kreait\Firebase\JWT\IdTokenVerifier;
 
 class Guard
 {
-    // protected $verifier;
-
-    // public function __construct(IdTokenVerifier $IdTokenVerifier)
-    // {
-    //     $this->verifier = IdTokenVerifier::createWithProjectId('amigo-af350');
-    // }
-
-    /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api', ['except' => ['login']]);
-    // }
-
     public function user($request)
     {
+        $projectAmigoid = 'amigo-test-ed578';
+        $projectid = 'amigo-af350';
         $token = $request->bearerToken();
-        $verifier = IdTokenVerifier::createWithProjectId('amigo-af350');
+        $verifier = IdTokenVerifier::createWithProjectId($projectid);
         try {
             // $token = $this->verifier->verifyIdToken($token);
             $token = $verifier->verifyIdToken($token);
@@ -47,29 +32,5 @@ class Guard
             print $e->getMessage();
             exit;
         }
-
-        // $projectId = 'amigo-af350';
-        // // $idToken = 'eyJhb...'; // An ID token given to your backend by a Client application
-
-        // $verifier = IdTokenVerifier::createWithProjectId($projectId);
-
-        // try {
-        //     $token = $verifier->verifyIdToken($request->token);
-        // } catch (IdTokenVerificationFailed $e) {
-        //     echo $e->getMessage();
-        //     // Example Output:
-        //     // The value 'eyJhb...' is not a verified ID token:
-        //     // - The token is expired.
-        //     exit;
-        // }
-
-        // try {
-        //     $token = $verifier->verifyIdTokenWithLeeway($request->token, $leewayInSeconds = 10000000);
-        // } catch (IdTokenVerificationFailed $e) {
-        //     print $e->getMessage();
-        //     exit;
-        // }
-
-        // echo json_encode($token->payload(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 }
